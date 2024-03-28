@@ -29,12 +29,16 @@ const DetailSectionComponent = () => {
   }, []);
   return (
     detail && (
-      <div>
+      <div style={{ textAlign: "center" }}>
         <Card>
           <Card.Img variant="top" src={detail.image_url} />
           <Card.Body>
             <Card.Title>{detail.title}</Card.Title>
             <Card.Text>{detail.summary}</Card.Text>
+            <Card.Text style={{ fontWeight: "700" }}>
+              Pubblicato il: {new Date(detail.published_at).getDate()}-{new Date(detail.published_at).getMonth()}-
+              {new Date(detail.published_at).getFullYear()}
+            </Card.Text>
           </Card.Body>
         </Card>
       </div>

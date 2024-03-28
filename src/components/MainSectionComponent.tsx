@@ -48,7 +48,7 @@ const MainSectionComponent = () => {
 
   return (
     <Carousel data-bs-theme="dark">
-      {data.slice(0, 5).map((article) => (
+      {data.slice(0, 6).map((article) => (
         <Carousel.Item key={article.id} id="car-img">
           <Link to={`/details/` + article.id}>
             <SingleCarouselItem article={article} />
