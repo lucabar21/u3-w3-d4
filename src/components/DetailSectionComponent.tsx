@@ -4,7 +4,7 @@ import { detailsData } from "../interfaces/data";
 import Card from "react-bootstrap/Card";
 
 const DetailSectionComponent = () => {
-  const [detail, setDetail] = useState<detailsData[]>([]);
+  const [detail, setDetail] = useState<detailsData | null>(null);
 
   const params = useParams();
 
@@ -17,7 +17,7 @@ const DetailSectionComponent = () => {
           throw new Error("problema nella chiamata API");
         }
       })
-      .then((arrayOfDetails: detailsData[]) => {
+      .then((arrayOfDetails: detailsData) => {
         console.log("DETTAGLI", arrayOfDetails);
         setDetail(arrayOfDetails);
       })
@@ -27,17 +27,18 @@ const DetailSectionComponent = () => {
   useEffect(() => {
     fetchDetails();
   }, []);
-
   return (
-    <div>
-      <Card>
-        <Card.Img variant="top" src={detail.image_url} />
-        <Card.Body>
-          <Card.Title>{detail.title}</Card.Title>
-          <Card.Text>{detail.summary}</Card.Text>
-        </Card.Body>
-      </Card>
-    </div>
+    detail && (
+      <div>
+        <Card>
+          <Card.Img variant="top" src={detail.image_url} />
+          <Card.Body>
+            <Card.Title>{detail.title}</Card.Title>
+            <Card.Text>{detail.summary}</Card.Text>
+          </Card.Body>
+        </Card>
+      </div>
+    )
   );
 };
 export default DetailSectionComponent;
